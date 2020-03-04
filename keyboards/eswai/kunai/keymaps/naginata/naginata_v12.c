@@ -996,7 +996,19 @@ bool naginata_lookup(int nt, bool shifted) {
       return true;
       break;
 #endif
-    default:
+     case B_J|B_K|B_D: // wheel up
+        for (int i = 0; i < 3; i++)
+          tap_code(KC_MS_WH_UP);
+        compress_buffer(nt);
+        return true;
+        break;
+      case B_J|B_K|B_F: // wheel down
+        for (int i = 0; i < 3; i++)
+          tap_code(KC_MS_WH_DOWN);
+        compress_buffer(nt);
+        return true;
+        break;
+      default:
       // キーから仮名に変換して出力する
 
       // 通常の仮名
