@@ -12,3 +12,5 @@
 
 #define IS_LEFT_HAND  true
 //#define USE_AS_I2C_SLAVE
+
+#define CONFIG_NFCT_PINS_AS_GPIOS
