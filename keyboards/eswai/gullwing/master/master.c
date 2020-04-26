@@ -37,6 +37,8 @@ void matrix_init_kb() {
   } else if (row == 0b10) {
     bootloader_flag = true;
   }
+
+  matrix_init_user();
 }
 
 void matrix_scan_kb() {
@@ -44,4 +46,6 @@ void matrix_scan_kb() {
  if (bootloader_flag && cnt++==500) {
    bootloader_jump();
  }
+
+ matrix_scan_user();
 }
