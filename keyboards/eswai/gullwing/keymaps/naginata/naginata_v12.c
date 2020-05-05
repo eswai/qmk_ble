@@ -129,6 +129,7 @@ const uint32_t ng_key[] = {
   [NG_SLSH - NG_Q] = B_SLSH,
 
   [NG_SHFT - NG_Q] = B_SHFT,
+  [NG_SHFT2 - NG_Q] = B_SHFT,
 };
 
 // カナ変換テーブル
@@ -824,49 +825,44 @@ bool process_modifier(uint16_t keycode, keyrecord_t *record) {
   return false;
 }
 
-static bool f_pressed = false;
-static bool g_pressed = false;
-static bool h_pressed = false;
-static bool j_pressed = false;
+static uint8_t fghj_status = 0UL; // 各ビットがFGHJキーのオンオフを表す
 
 // 薙刀式の起動処理(COMBOを使わない)
 bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
   if (keycode == ngon_keys[0]) {
     if (record->event.pressed) {
-      h_pressed = true;
+      fghj_status |= (1UL<<1);
     } else {
-      h_pressed = false;
+      fghj_status &= ~(1UL<<1);
     }
   } else if (keycode == ngon_keys[1]) {
     if (record->event.pressed) {
-      j_pressed = true;
+      fghj_status |= (1UL<<0);
     } else {
-      j_pressed = false;
+      fghj_status &= ~(1UL<<0);
     }
   } else if (keycode == ngoff_keys[0]) {
     if (record->event.pressed) {
-      f_pressed = true;
+      fghj_status |= (1UL<<3);
     } else {
-      f_pressed = false;
+      fghj_status &= ~(1UL<<3);
     }
   } else if (keycode == ngoff_keys[1]) {
     if (record->event.pressed) {
-      g_pressed = true;
+      fghj_status |= (1UL<<2);
     } else {
-      g_pressed = false;
+      fghj_status &= ~(1UL<<2);
     }
   }
 
-  if (f_pressed & g_pressed) {
-    f_pressed = false;
-    g_pressed = false;
+  if (fghj_status == 0b1100) {
+    fghj_status = 0UL;
     tap_code(KC_BSPC);
     naginata_off();
     return false;
   }
-  if (h_pressed & j_pressed) {
-    h_pressed = false;
-    j_pressed = false;
+  if (fghj_status == 0b0011) {
+    fghj_status = 0UL;
     tap_code(KC_BSPC);
     naginata_on();
     return false;
@@ -885,7 +881,7 @@ bool process_naginata(uint16_t keycode, keyrecord_t *record) {
 
   if (record->event.pressed) {
     switch (keycode) {
-      case NG_Q ... NG_SHFT:
+      case NG_Q ... NG_SHFT2:
         ninputs[ng_chrcount] = keycode; // キー入力をバッファに貯める
         ng_chrcount++;
         keycomb |= ng_key[keycode - NG_Q]; // キーの重ね合わせ
@@ -898,7 +894,7 @@ bool process_naginata(uint16_t keycode, keyrecord_t *record) {
     }
   } else { // key release
     switch (keycode) {
-      case NG_Q ... NG_SHFT:
+      case NG_Q ... NG_SHFT2:
         // どれかキーを離したら処理を開始する
         keycomb &= ~ng_key[keycode - NG_Q]; // キーの重ね合わせ
         if (ng_chrcount > 0) {
@@ -939,6 +935,13 @@ bool naginata_lookup(int nt, bool shifted) {
   // バッファ内のキーを組み合わせる
   for (int i = 0; i < nt; i++) {
     keycomb_buf |= ng_key[ninputs[i] - NG_Q];
+  }
+
+  // NG_SHFT2はスペースの代わりにエンターを入力する
+  if (keycomb_buf == B_SHFT && ninputs[0] == NG_SHFT2) {
+    tap_code(KC_ENT);
+    compress_buffer(nt);
+    return true;
   }
 
   if (shifted) {
