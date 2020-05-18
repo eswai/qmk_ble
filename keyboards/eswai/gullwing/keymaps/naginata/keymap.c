@@ -160,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = LAYOUT(
     JP_PIPE,JP_TILD,JP_AT  ,JP_HASH,JP_DLR ,JP_PERC,                XXXXXXX,XXXXXXX,XXXXXXX        ,KC_HOME,KC_DEL ,XXXXXXX, \
     JP_UNDS,JP_CIRC,JP_AMPR,JP_EXLM,JP_QUES,JP_BSLS,XXXXXXX,XXXXXXX,XXXXXXX,KC_LEFT,LCTL_T(KC_LEFT),KC_END ,XXXXXXX,XXXXXXX, \
-                            JP_GRV ,JP_QUOT,KC_DQT ,XXXXXXX,XXXXXXX,XXXXXXX,KC_RGHT,LKCTL_T(C_RGHT)     , \
+                            JP_GRV ,JP_QUOT,KC_DQT ,XXXXXXX,XXXXXXX,XXXXXXX,KC_RGHT,LCTL_T(KC_RGHT)     , \
     _______,                        _______,_______,_______,_______,_______,_______,                        _______
   ),
 
