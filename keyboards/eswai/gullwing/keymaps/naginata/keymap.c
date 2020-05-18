@@ -118,14 +118,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_QUOT,KC_COMM,KC_S   ,KC_R   ,KC_L   ,KC_B   ,                KC_Y   ,KC_BSPC,KC_I   ,KC_D   ,KC_DOT ,KC_X , \
     KC_V   ,KC_W   ,KC_H   ,KC_T   ,KC_E   ,KC_M   ,KC_SCLN,KC_SLSH,KC_P   ,KC_N   ,KC_A   ,KC_O   ,KC_K   ,KC_Q , \
                             KC_Z   ,KC_G   ,KC_C   ,KC_LBRC,KC_RBRC,KC_U   ,KC_F   ,KC_J   , \
-    KC_LCMD,                LOWER  ,LSFT_T(KC_SPC) ,KC_TAB ,KC_LALT,LSFT_T(KC_ENT) ,RAISE  ,                        KC_LCTL
+    KC_LCTL,                LOWER  ,LSFT_T(KC_SPC) ,KC_TAB ,KC_LALT,LSFT_T(KC_ENT) ,RAISE  ,               KC_LCTL
   ),
 
   [_NAGINATA] = LAYOUT(
     NG_X   ,NG_Q   ,NG_W   ,NG_E   ,NG_R   ,NG_T   ,                NG_Y   ,NG_U   ,NG_I   ,NG_O   ,NG_P   ,NG_DOT , \
     NG_Z   ,NG_A   ,NG_S   ,NG_D   ,NG_F   ,NG_G   ,_______,_______,NG_H   ,NG_J   ,NG_K   ,NG_L   ,NG_SCLN,NG_SLSH , \
                             NG_C   ,NG_V   ,NG_B   ,_______,_______,NG_N   ,NG_M   ,NG_COMM, \
-    KC_LCMD,                        _______,NG_SHFT,_______,_______,NG_SHFT2,_______  ,                        KC_LCTL
+    _______,                        _______,NG_SHFT,_______,_______,NG_SHFT2,_______  ,                        _______
   ),
 
 /* _LOWER
@@ -140,8 +140,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 */
   [_LOWER] = LAYOUT(
-    KC_ESC ,KC_LCBR,KC_LBRC,KC_LPRN,KC_LT  ,KC_COLN,                KC_7   ,KC_8   ,KC_9   ,KC_PLUS,KC_ASTR,KC_EQL , \
-    XXXXXXX,KC_RCBR,KC_RBRC,KC_RPRN,KC_GT  ,KC_SCLN,XXXXXXX,KC_DOT ,KC_4   ,KC_5   ,KC_6   ,KC_MINS,KC_SLSH,KC_COMM, \
+    KC_ESC ,JP_LCBR,JP_LBRC,JP_LPRN,KC_LT  ,KC_COLN,                KC_7   ,KC_8   ,KC_9   ,JP_PLUS,JP_ASTR,JP_EQL , \
+    XXXXXXX,JP_RCBR,JP_RBRC,JP_RPRN,KC_GT  ,KC_SCLN,XXXXXXX,KC_DOT ,KC_4   ,KC_5   ,KC_6   ,JP_MINS,KC_SLSH,KC_COMM, \
                             NGOFF  ,NGON   ,XXXXXXX,XXXXXXX,KC_0   ,KC_1   ,KC_2   ,KC_3        , \
     _______,                        _______,_______,_______,_______,_______,_______,                        _______
   ),
@@ -158,9 +158,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 */
   [_RAISE] = LAYOUT(
-    KC_PIPE,KC_TILD,KC_AT  ,KC_HASH,KC_DLR ,KC_PERC,                XXXXXXX,XXXXXXX,KC_UP  ,XXXXXXX,KC_HOME,XXXXXXX, \
-    KC_UNDS,KC_CIRC,KC_AMPR,KC_EXLM,KC_QUES,KC_BSLS,XXXXXXX,XXXXXXX,XXXXXXX,KC_LEFT,KC_DOWN,KC_RGHT,KC_END ,XXXXXXX, \
-                            KC_GRV ,KC_QUOT,KC_DQT ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX     , \
+    JP_PIPE,JP_TILD,JP_AT  ,JP_HASH,JP_DLR ,JP_PERC,                XXXXXXX,KC_LEFT,LCTL_T(KC_LEFT),KC_HOME,KC_DEL ,XXXXXXX, \
+    JP_UNDS,JP_CIRC,JP_AMPR,JP_EXLM,JP_QUES,JP_BSLS,XXXXXXX,XXXXXXX,XXXXXXX,KC_RGHT,LCTL_T(KC_RGHT),KC_END ,XXXXXXX,XXXXXXX, \
+                            JP_GRV ,JP_QUOT,KC_DQT ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX     , \
     _______,                        _______,_______,_______,_______,_______,_______,                        _______
   ),
 
@@ -177,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
   [_ADJUST] = LAYOUT(
     ADV_ID0,ADV_ID1,ADV_ID2,XXXXXXX,XXXXXXX,BATT_LV,                ENT_DFU,XXXXXXX,XXXXXXX,DEL_ID0,DEL_ID1,DEL_ID2, \
-    ADV_ID3,ADV_ID4,XXXXXXX,XXXXXXX,XXXXXXX,RESET  ,XXXXXXX,XXXXXXX,ENT_SLP,XXXXXXX,XXXXXXX,XXXXXXX,DEL_ID3,DEL_ID4, \
+    ADV_ID3,ADV_ID4,XXXXXXX,XXXXXXX,XXXXXXX,RESET  ,DELBNDS,XXXXXXX,ENT_SLP,XXXXXXX,XXXXXXX,XXXXXXX,DEL_ID3,DEL_ID4, \
                             XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX     , \
     _______,                        _______,_______,_______,_______,_______,_______,                        _______
   ),
