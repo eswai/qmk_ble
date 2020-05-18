@@ -117,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SRLBY] = LAYOUT(
     JP_QUOT,KC_COMM,KC_S   ,KC_R   ,KC_L   ,KC_B   ,                KC_Y   ,KC_BSPC,KC_I   ,KC_D   ,KC_DOT ,KC_X , \
     KC_V   ,KC_W   ,KC_H   ,KC_T   ,KC_E   ,KC_M   ,KC_SCLN,KC_SLSH,KC_P   ,KC_N   ,KC_A   ,KC_O   ,KC_K   ,KC_Q , \
-                            KC_Z   ,KC_G   ,KC_C   ,JP_LBRC,JP_RBRC,KC_U   ,KC_F   ,KC_J   , \
+                            KC_Z   ,KC_G   ,KC_C   ,JP_LPRN,JP_RPRN,KC_U   ,KC_F   ,KC_J   , \
     KC_LCTL,                LOWER  ,LSFT_T(KC_SPC) ,KC_TAB ,KC_LALT,LSFT_T(KC_ENT) ,RAISE  ,               KC_LCTL
   ),
 
