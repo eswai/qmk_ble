@@ -115,9 +115,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 */
   [_SRLBY] = LAYOUT(
-    KC_QUOT,KC_COMM,KC_S   ,KC_R   ,KC_L   ,KC_B   ,                KC_Y   ,KC_BSPC,KC_I   ,KC_D   ,KC_DOT ,KC_X , \
+    JP_QUOT,KC_COMM,KC_S   ,KC_R   ,KC_L   ,KC_B   ,                KC_Y   ,KC_BSPC,KC_I   ,KC_D   ,KC_DOT ,KC_X , \
     KC_V   ,KC_W   ,KC_H   ,KC_T   ,KC_E   ,KC_M   ,KC_SCLN,KC_SLSH,KC_P   ,KC_N   ,KC_A   ,KC_O   ,KC_K   ,KC_Q , \
-                            KC_Z   ,KC_G   ,KC_C   ,KC_LBRC,KC_RBRC,KC_U   ,KC_F   ,KC_J   , \
+                            KC_Z   ,KC_G   ,KC_C   ,JP_LBRC,JP_RBRC,KC_U   ,KC_F   ,KC_J   , \
     KC_LCTL,                LOWER  ,LSFT_T(KC_SPC) ,KC_TAB ,KC_LALT,LSFT_T(KC_ENT) ,RAISE  ,               KC_LCTL
   ),
 
@@ -158,9 +158,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 */
   [_RAISE] = LAYOUT(
-    JP_PIPE,JP_TILD,JP_AT  ,JP_HASH,JP_DLR ,JP_PERC,                XXXXXXX,KC_LEFT,LCTL_T(KC_LEFT),KC_HOME,KC_DEL ,XXXXXXX, \
-    JP_UNDS,JP_CIRC,JP_AMPR,JP_EXLM,JP_QUES,JP_BSLS,XXXXXXX,XXXXXXX,XXXXXXX,KC_RGHT,LCTL_T(KC_RGHT),KC_END ,XXXXXXX,XXXXXXX, \
-                            JP_GRV ,JP_QUOT,KC_DQT ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX     , \
+    JP_PIPE,JP_TILD,JP_AT  ,JP_HASH,JP_DLR ,JP_PERC,                XXXXXXX,XXXXXXX,XXXXXXX        ,KC_HOME,KC_DEL ,XXXXXXX, \
+    JP_UNDS,JP_CIRC,JP_AMPR,JP_EXLM,JP_QUES,JP_BSLS,XXXXXXX,XXXXXXX,XXXXXXX,KC_LEFT,LCTL_T(KC_LEFT),KC_END ,XXXXXXX,XXXXXXX, \
+                            JP_GRV ,JP_QUOT,KC_DQT ,XXXXXXX,XXXXXXX,XXXXXXX,KC_RGHT,LKCTL_T(C_RGHT)     , \
     _______,                        _______,_______,_______,_______,_______,_______,                        _______
   ),
 
