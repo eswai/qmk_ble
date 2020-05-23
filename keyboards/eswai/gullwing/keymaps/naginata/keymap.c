@@ -93,6 +93,7 @@ enum {
   _LOWER,
   _RAISE,
   _ADJUST,
+  _CTRL,
 };
 
 // Layer related keycodes
@@ -118,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     JP_QUOT,KC_COMM,KC_S   ,KC_R   ,KC_L   ,KC_B   ,                KC_Y   ,KC_BSPC,KC_I   ,KC_D   ,KC_DOT ,KC_X , \
     KC_V   ,KC_W   ,KC_H   ,KC_T   ,KC_E   ,KC_M   ,KC_SCLN,KC_SLSH,KC_P   ,KC_N   ,KC_A   ,KC_O   ,KC_K   ,KC_Q , \
                             KC_Z   ,KC_G   ,KC_C   ,JP_LPRN,JP_RPRN,KC_U   ,KC_F   ,KC_J   , \
-    KC_LCTL,                LOWER  ,LSFT_T(KC_SPC) ,KC_TAB ,KC_LALT,LSFT_T(KC_ENT) ,RAISE  ,               KC_LCTL
+    MO(_CTRL),              LOWER  ,LSFT_T(KC_SPC) ,KC_TAB ,KC_LALT,LSFT_T(KC_ENT) ,RAISE  ,               KC_LCTL
   ),
 
   [_NAGINATA] = LAYOUT(
@@ -158,9 +159,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
 */
   [_RAISE] = LAYOUT(
-    JP_PIPE,JP_TILD,JP_AT  ,JP_HASH,JP_DLR ,JP_PERC,                XXXXXXX,XXXXXXX,XXXXXXX        ,KC_HOME,KC_DEL ,XXXXXXX, \
-    JP_UNDS,JP_CIRC,JP_AMPR,JP_EXLM,JP_QUES,JP_BSLS,XXXXXXX,XXXXXXX,XXXXXXX,KC_LEFT,LCTL_T(KC_LEFT),KC_END ,XXXXXXX,XXXXXXX, \
-                            JP_GRV ,JP_QUOT,KC_DQT ,XXXXXXX,XXXXXXX,XXXXXXX,KC_RGHT,LCTL_T(KC_RGHT)     , \
+    JP_PIPE,JP_TILD,JP_AT  ,JP_HASH,JP_DLR ,JP_PERC,                XXXXXXX,XXXXXXX,XXXXXXX      ,KC_HOME,KC_DEL ,XXXXXXX, \
+    JP_UNDS,JP_CIRC,JP_AMPR,JP_EXLM,JP_QUES,JP_BSLS,XXXXXXX,XXXXXXX,XXXXXXX,KC_LEFT,LCTL(KC_LEFT),KC_END ,XXXXXXX,XXXXXXX, \
+                            JP_GRV ,JP_QUOT,KC_DQT ,XXXXXXX,XXXXXXX,XXXXXXX,KC_RGHT,LCTL(KC_RGHT)     , \
+    _______,                        _______,_______,_______,_______,_______,_______,                        _______
+  ),
+
+  [_CTRL] = LAYOUT(
+    XXXXXXX,XXXXXXX,LCTL(KC_A)  ,LCTL(KC_Y)  ,LCTL(KC_S)  ,XXXXXXX     ,                XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, \
+    XXXXXXX,XXXXXXX,XXXXXXX     ,LCTL(KC_Z)  ,LCTL(KC_C)  ,LCTL(KC_X)  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, \
+                                 XXXXXXX     ,LCTL(KC_V)  ,LCTL(KC_V)  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, \
     _______,                        _______,_______,_______,_______,_______,_______,                        _______
   ),
 
