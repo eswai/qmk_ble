@@ -27,13 +27,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID       0xEC59
 #define PRODUCT_ID      0x0008
 #define DEVICE_VER      0x0100
-#define MANUFACTURER    SatT
+#define MANUFACTURER    eswai
 #define PRODUCT         7x4x2
 #define DESCRIPTION     Firmware for 7x4x2 keyboard
 
 /* key matrix size */
 #define MATRIX_ROWS 2
-#define MATRIX_COLS 24
+#define MATRIX_COLS 28
 
 #define DIODE_DIRECTION COL2ROW
 
