@@ -20,8 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include "keymap_jp.h"
 
+// 薙刀式
+#include "naginata.h"
+NGKEYS naginata_keys;
+// 薙刀式
+
 enum custom_keycodes {
-    AD_WO_L = SAFE_RANGE, /* Start advertising without whitelist  */
+    AD_WO_L = NG_SAFE_RANGE, /* Start advertising without whitelist  */
     BLE_DIS,              /* Disable BLE HID sending              */
     BLE_EN,               /* Enable BLE HID sending               */
     USB_DIS,              /* Disable USB HID sending              */
@@ -49,6 +54,7 @@ extern keymap_config_t keymap_config;
 
 enum {
   _QWERTY,
+  _NAGINATA,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -64,11 +70,11 @@ enum {
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
  //+--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------+
-    KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    JP_EQL,         KC_MINS, KC_Y,    KC_I,    KC_U,    KC_O,    KC_P,    KC_BSPC, \
+    KC_ESC,  KC_COMM, KC_S,    KC_R,    KC_L,    KC_B,    JP_EQL,         KC_MINS, KC_Y,    KC_BSPC, KC_I,    KC_D,    KC_DOT, JP_BSLS, \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
-    MT(MOD_LCTL,KC_TAB),  KC_A,   KC_S,    KC_D,    KC_F,    KC_G,    JP_QUOT,        KC_GRV,  KC_H,    KC_J,    KC_K,    KC_L,    JP_SCLN,    KC_ENT, \
+    MT(MOD_LCTL, KC_TAB),  KC_W,    KC_H,    KC_T,    KC_E,    KC_M,    JP_QUOT,        KC_GRV,  KC_P,    KC_N,    KC_A,    KC_O,    KC_K,    JP_SCLN, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    JP_LPRN,        JP_RPRN, KC_M,    KC_N,    KC_COMM, KC_DOT,  KC_SLSH, KC_RCTL, \
+    KC_LSFT, KC_V,    KC_SLSH, KC_Z,    KC_G,    KC_C,    JP_LPRN,        JP_RPRN, KC_U,    KC_F,    KC_J,    KC_X,    KC_Q,    KC_RCTL, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     KC_LCTL, KC_LALT, KC_LWIN, XXXXXXX,  LOWER,XXXXXXX,LSFT_T(KC_SPC),LSFT_T(KC_ENT),XXXXXXX,  RAISE,   KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
@@ -110,6 +116,17 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
   ),
 
+    [_NAGINATA] = LAYOUT(
+ //+--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------+
+    _______, NG_Q   , NG_W   , NG_E   , NG_R   , NG_T    , _______,        _______, NG_Y   ,NG_U   , NG_I    , NG_O   , NG_P   , _______, \
+ //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
+    _______, NG_A   , NG_S   , NG_D   , NG_F   , NG_G    , _______,        _______, NG_H   ,NG_J   , NG_K    , NG_L   , NG_SCLN , _______, \
+ //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
+    _______, NG_Z    , NG_X  , NG_C   , NG_V   , NG_B    , _______,        _______, NG_N   ,NG_M   , NG_COMM,  NG_DOT , NG_SLSH , _______, \
+ //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
+    _______, _______, _______, _______, _______, _______, NG_SHFT,        NG_SHFT2,_______, _______, _______, _______, _______, _______ \
+ //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
+  ),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -205,6 +222,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   }
 
+  // 薙刀式
+  if (!process_naginata(keycode, record))
+    return false;
+  // 薙刀式
+
   return true;
+}
+
+void matrix_init_user(void) {
+  // 薙刀式
+  uint16_t ngonkeys[] = {KC_P, KC_N};
+  uint16_t ngoffkeys[] = {KC_E, KC_M};
+  set_naginata(_NAGINATA, ngonkeys, ngoffkeys);
+  #ifdef NAGINATA_EDIT_MAC
+  set_unicode_input_mode(UC_OSX);
+  #endif
+  #ifdef NAGINATA_EDIT_WIN
+  set_unicode_input_mode(UC_WINC);
+  #endif
 }
 
