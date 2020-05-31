@@ -70,7 +70,7 @@ enum {
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
  //+--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------+
-    KC_ESC,  KC_COMM, KC_S,    KC_R,    KC_L,    KC_B,    JP_EQL,         KC_MINS, KC_Y,    KC_BSPC, KC_I,    KC_D,    KC_COMM, JP_BSLS, \
+    KC_ESC,  KC_COMM, KC_S,    KC_R,    KC_L,    KC_B,    JP_EQL,         KC_MINS, KC_Y,    KC_BSPC, KC_I,    KC_D,    KC_DOT, JP_BSLS, \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
     MT(MOD_LCTL, KC_TAB),  KC_W,    KC_H,    KC_T,    KC_E,    KC_M,    JP_QUOT,        KC_GRV,  KC_P,    KC_N,    KC_A,    KC_O,    KC_K,    JP_SCLN, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
