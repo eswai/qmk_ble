@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "app_ble_func.h"
 #include <stdio.h>
 #include "keymap_jp.h"
+#include "twpair_on_jis.h"
 
 // 薙刀式
 #include "naginata.h"
@@ -66,27 +67,28 @@ enum {
 // Fillers to make layering more clear
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
+#define CTAB MT(MOD_LCTL, KC_TAB)
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
  //+--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------+
-    KC_ESC,  KC_COMM, KC_S,    KC_R,    KC_L,    KC_B,    JP_EQL,         KC_MINS, KC_Y,    KC_BSPC, KC_I,    KC_D,    KC_DOT, JP_BSLS, \
+    KC_ESC,  KC_COMM, KC_S,    KC_R,    KC_L,    KC_B,    KC_EQL,         KC_MINS, KC_Y,    KC_BSPC, KC_I,    KC_D,    KC_DOT,  KC_BSLS, \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
-    MT(MOD_LCTL, KC_TAB),  KC_W,    KC_H,    KC_T,    KC_E,    KC_M,    JP_QUOT,        KC_GRV,  KC_P,    KC_N,    KC_A,    KC_O,    KC_K,    JP_SCLN, \
+    CTAB,    KC_W,    KC_H,    KC_T,    KC_E,    KC_M,    KC_QUOT,        KC_GRV,  KC_P,    KC_N,    KC_A,    KC_O,    KC_K,    KC_SCLN, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    KC_LSFT, KC_V,    KC_SLSH, KC_Z,    KC_G,    KC_C,    JP_LPRN,        JP_RPRN, KC_U,    KC_F,    KC_J,    KC_X,    KC_Q,    KC_RCTL, \
+    KC_LSFT, KC_V,    KC_SLSH, KC_Z,    KC_G,    KC_C,    KC_LPRN,        KC_RPRN, KC_U,    KC_F,    KC_J,    KC_X,    KC_Q,    KC_RCTL, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    KC_LCTL, KC_LALT, KC_LWIN, XXXXXXX,  LOWER,XXXXXXX,LSFT_T(KC_SPC),LSFT_T(KC_ENT),XXXXXXX,  RAISE,   KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT \
+    KC_LCTL, KC_LALT, KC_LWIN, ADJUST,  LOWER,XXXXXXX,LSFT_T(KC_SPC),LSFT_T(KC_ENT),XXXXXXX,  RAISE,  KC_LEFT, KC_UP,  KC_DOWN, KC_RGHT \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
   ),
 
   [_LOWER] = LAYOUT(
  //+--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------+
-    _______, _______, LCTL(KC_A),LCTL(KC_Y),LCTL(KC_S),   _______, _______,        _______, KC_COMM, KC_7,    KC_8,    KC_9,    JP_PLUS, JP_ASTR, \
+    _______, XXXXXXX, LCTL(KC_A),LCTL(KC_Y),LCTL(KC_S),   XXXXXXX, XXXXXXX,        XXXXXXX, KC_COMM, KC_7,    KC_8,    KC_9,    KC_PLUS, KC_ASTR, \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
-    _______, _______, _______,   LCTL(KC_Z),LCTL(KC_C),LCTL(KC_X), _______,        _______, KC_DOT,  KC_4,    KC_5,    KC_6,    JP_MINS, JP_SLSH, \
+    _______, XXXXXXX, XXXXXXX,   LCTL(KC_Z),LCTL(KC_C),LCTL(KC_X), XXXXXXX,        XXXXXXX, KC_DOT,  KC_4,    KC_5,    KC_6,    KC_MINS, KC_SLSH, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    _______, _______, _______, _______,     LCTL(KC_V),LCTL(KC_V), JP_LBRC,         JP_RBRC, KC_0,    KC_1,    KC_2,    KC_3,    JP_EQL,  _______, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX,     LCTL(KC_V),LCTL(KC_V), KC_LBRC,        KC_RBRC, KC_0,    KC_1,    KC_2,    KC_3,    KC_EQL,  XXXXXXX, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______ \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
@@ -94,11 +96,11 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT(
  //+--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------+
-    _______, JP_TILD,JP_AT    ,JP_HASH, JP_DLR , JP_PERC, _______,        _______, _______, _______, _______, _______, _______, _______, \
+    _______, KC_TILD,KC_AT    ,KC_HASH, KC_DLR , KC_PERC, XXXXXXX,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
-    _______, JP_CIRC, JP_AMPR, JP_EXLM, JP_QUES, JP_BSLS, _______,        _______, _______, KC_LEFT, LCTL(KC_LEFT), KC_HOME, _______, _______, \
+    _______, KC_CIRC, KC_AMPR, KC_EXLM, KC_QUES, KC_BSLS, XXXXXXX,        XXXXXXX, KC_UP,   KC_LEFT, LCTL(KC_LEFT), KC_HOME, XXXXXXX, XXXXXXX, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    _______, _______, _______, _______, _______, _______, JP_LCBR,        JP_LCBR, _______, KC_RGHT, LCTL(KC_RGHT), KC_END,  _______, _______, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LCBR,        KC_LCBR, KC_DOWN, KC_RGHT, LCTL(KC_RGHT), KC_END,  XXXXXXX, XXXXXXX, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
     _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______ \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
@@ -106,13 +108,13 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT(
  //+--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------+
-    _______, ADV_ID0, ADV_ID1, ADV_ID2, ADV_ID3, ADV_ID4, BATT_LV,        ENT_DFU, DEL_ID0, DEL_ID1, DEL_ID2, DEL_ID3, DEL_ID4, _______, \
+    AD_WO_L, ADV_ID0, ADV_ID1, ADV_ID2, ADV_ID3, ADV_ID4, BATT_LV,        ENT_DFU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
-    _______, _______, _______, _______, _______, _______, RESET,          ENT_SLP, _______, _______, _______, _______, _______, _______, \
+    DELBNDS, DEL_ID0, DEL_ID1, DEL_ID2, DEL_ID3, DEL_ID4, RESET,          ENT_SLP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______, \
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
  //|--------+--------+--------+--------+--------+--------+--------|      |--------+--------+--------+--------+--------+--------+--------|
-    _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______ \
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
  //|--------+--------+--------+--------+--------+--------+--------+      +--------+--------+--------+--------+--------+--------+--------|
   ),
 
@@ -226,6 +228,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_naginata(keycode, record))
     return false;
   // 薙刀式
+
+  if (!twpair_on_jis(keycode, record))
+    return false;
 
   return true;
 }
