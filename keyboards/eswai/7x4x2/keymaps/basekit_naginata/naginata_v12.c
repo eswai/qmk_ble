@@ -842,9 +842,15 @@ bool process_modifier(uint16_t keycode, keyrecord_t *record) {
 }
 
 static uint8_t fghj_status = 0UL; // 各ビットがFGHJキーのオンオフを表す
+static bool skip = false;
 
 // 薙刀式の起動処理(COMBOを使わない)
 bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
+  if (skip) {
+    skip = false;
+    return false;
+  }
+
   if (keycode == ngon_keys[0]) {
     if (record->event.pressed) {
       fghj_status |= (1UL<<0);
@@ -853,6 +859,7 @@ bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
       if (fghj_status == 0b0011) {
         fghj_status = 0UL;
         naginata_on();
+        skip = true;
         return false;
       } else {
         fghj_status &= ~(1UL<<0);
@@ -868,6 +875,7 @@ bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
       if (fghj_status == 0b0011) {
         fghj_status = 0UL;
         naginata_on();
+        skip = true;
         return false;
       } else {
         fghj_status &= ~(1UL<<1);
@@ -883,6 +891,7 @@ bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
       if (fghj_status == 0b1100) {
         fghj_status = 0UL;
         naginata_off();
+        skip = true;
         return false;
       } else {
         fghj_status &= ~(1UL<<2);
@@ -898,6 +907,7 @@ bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
       if (fghj_status == 0b1100) {
         fghj_status = 0UL;
         naginata_off();
+        skip = true;
         return false;
       } else {
         fghj_status &= ~(1UL<<3);
@@ -906,17 +916,6 @@ bool enable_naginata(uint16_t keycode, keyrecord_t *record) {
       }
     }
   }
-
-  if (fghj_status == 0b1100) {
-    fghj_status = 0UL;
-    naginata_off();
-    return false;
-  }
-  // if (fghj_status == 0b0011) {
-  //   fghj_status = 0UL;
-  //   naginata_on();
-  //   return false;
-  // }
 
   return true;
 }
